@@ -2,24 +2,35 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import plantsApi from '../../common/services/plant-service';
 import { TPlantFormFields } from '../../common/types/states';
-import { addPlantFormInitial } from '../../common/vars/formStates';
+import {
+  addPlantFormInitial,
+  formFeedbackInitial,
+} from '../../common/vars/formStates';
 import { plantDropdownOptions } from '../../common/vars/dropdownOptions';
 import styles from './AddPlantForm.module.scss';
 import { nextWater } from '../../common/utils/watering';
 import SubmitButton from '../Buttons/SubmitButton';
+import { formUIUpdate } from '../../common/utils/forms';
 
 const AddPlantForm = () => {
   const [formFields, setFormFields] =
     useState<TPlantFormFields>(addPlantFormInitial);
-  const [formFeedback, setFormFeedback] = useState({
-    text: '',
-    state: 'error',
-  });
+  const [formFeedback, setFormFeedback] = useState(formFeedbackInitial);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    setFormFields({ ...formFields, next_water: moment().toISOString() });
-  }, [formFields.last_watered]);
+  const updateFormUI = (
+    feedbackText: string,
+    feedbackState?: 'error' | 'success',
+    loadingState?: boolean
+  ) => {
+    formUIUpdate(
+      setLoading,
+      setFormFeedback,
+      feedbackText,
+      feedbackState,
+      loadingState
+    );
+  };
 
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,27 +40,15 @@ const AddPlantForm = () => {
       .addPlant({ ...formFields })
       .then((res) => {
         if (res?.status == 200) {
-          setLoading(false);
-          setFormFeedback({
-            text: `${formFields.name} was added succesfully!`,
-            state: 'success',
-          });
+          updateFormUI(`${formFields.name} was added succesfully!`, 'success');
         } else {
           console.error(res);
-          setLoading(false);
-          setFormFeedback({
-            text: 'Something went wrong, please try again later',
-            state: 'error',
-          });
+          updateFormUI('Something went wrong, please try again later', 'error');
         }
       })
       .catch((e) => {
         console.error(e);
-        setLoading(false);
-        setFormFeedback({
-          text: 'Something went wrong, please try again later',
-          state: 'error',
-        });
+        updateFormUI('Something went wrong, please try again later', 'error');
       });
   };
 

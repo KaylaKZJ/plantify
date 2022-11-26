@@ -9,3 +9,8 @@ export const addPlantFormInitial = {
   next_water: moment().toISOString(),
   water_schedule: [],
 };
+
+export const formFeedbackInitial = {
+  text: '',
+  state: 'error',
+};
