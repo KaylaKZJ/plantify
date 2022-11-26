@@ -19,11 +19,8 @@ const Home: FC<Props> = ({ plants }) => {
 
       <main className={styles.main}>
         <div className='text-center'>
-          <h1>Welcome to Plantify</h1>
           <h3 className='capitalize'>
-            Add some plants below <br />
-            &amp; <br />
-            watch them thrive
+            Add some plants below &amp; watch them thrive
           </h3>
         </div>
         <AddPlantForm />

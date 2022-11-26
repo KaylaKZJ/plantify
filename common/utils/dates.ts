@@ -5,5 +5,10 @@ export const formatDateForUser = (date: string | Date): string => {
 };
 
 export const waterToday = (date: string | Date): boolean => {
-  return moment(date).isSame(moment(), 'day');
+  if (moment().isAfter(date)) {
+    return true;
+  } else if (moment(date).isSame(moment(), 'day')) {
+    return true;
+  }
+  return false;
 };

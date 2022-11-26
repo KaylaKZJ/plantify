@@ -55,34 +55,37 @@ const AddPlantForm = () => {
   return (
     <div className={styles.container}>
       <form onSubmit={(e) => submit(e)}>
-        <label htmlFor='type'>Type Of Plant</label>
-        <select
-          id='type'
-          placeholder='Type Of Plant'
-          value={formFields.type}
-          onChange={(e) => {
-            console.log(e);
-            setFormFields({ ...formFields, type: e.target.value });
-          }}
-          required
-        >
-          {plantDropdownOptions.map((plant) => (
-            <option key={plant.text} value={plant.value}>
-              {plant.text}
-            </option>
-          ))}
-        </select>
-
-        <label htmlFor='name'>Name Of Plant</label>
-        <input
-          id='name'
-          placeholder='Name of plant'
-          value={formFields.name}
-          onChange={(e) => {
-            setFormFields({ ...formFields, name: e.target.value });
-          }}
-          required
-        />
+        <fieldset>
+          <label htmlFor='type'>Type Of Plant</label>
+          <select
+            id='type'
+            placeholder='Type Of Plant'
+            value={formFields.type}
+            onChange={(e) => {
+              console.log(e);
+              setFormFields({ ...formFields, type: e.target.value });
+            }}
+            required
+          >
+            {plantDropdownOptions.map((plant) => (
+              <option key={plant.text} value={plant.value}>
+                {plant.text}
+              </option>
+            ))}
+          </select>
+        </fieldset>
+        <fieldset>
+          <label htmlFor='name'>Name Of Plant</label>
+          <input
+            id='name'
+            placeholder='Name of plant'
+            value={formFields.name}
+            onChange={(e) => {
+              setFormFields({ ...formFields, name: e.target.value });
+            }}
+            required
+          />
+        </fieldset>
         <fieldset>
           <label htmlFor='name'>Plant Placement</label>
           <span>
@@ -112,17 +115,19 @@ const AddPlantForm = () => {
             <label htmlFor='outdoor'>Outdoor</label>
           </span>
         </fieldset>
-        <label htmlFor='name'>Date Last Watered</label>
-        <input
-          type='date'
-          onChange={(e) => {
-            setFormFields({
-              ...formFields,
-              last_watered: moment(e.target.value).toISOString(),
-            });
-          }}
-          required
-        />
+        <fieldset>
+          <label htmlFor='name'>Date Last Watered</label>
+          <input
+            type='date'
+            onChange={(e) => {
+              setFormFields({
+                ...formFields,
+                last_watered: moment(e.target.value).toISOString(),
+              });
+            }}
+            required
+          />
+        </fieldset>
         <SubmitButton loading={loading} buttonText='Add Plant' />
       </form>
       <p

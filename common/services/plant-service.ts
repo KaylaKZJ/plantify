@@ -15,6 +15,14 @@ const plantsApi = {
     };
     return fetch(api(url, method, data));
   },
+  deletePlant(id: string): Promise<void | Response> {
+    const url = '/api/delete-plant';
+    const method = 'POST';
+    const data = {
+      id: id,
+    };
+    return fetch(api(url, method, data));
+  },
 };
 
 export default plantsApi;

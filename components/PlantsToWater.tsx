@@ -6,20 +6,19 @@ const PlantsToWater = (props: any) => {
   return (
     <>
       <h1>Plants to water</h1>
-      {props.plants &&
-        props.plants.map((plant: any) => (
-          <PlantCardContainer key={plant.id}>
-            <div>
-              <PlantCard
-                name={plant.name}
-                type={plant.type}
-                lastWatered={plant.last_watered}
-                nextWater={plant.next_water}
-                id={plant.id}
-              />
-            </div>
-          </PlantCardContainer>
-        ))}
+      <PlantCardContainer>
+        {props.plants &&
+          props.plants.map((plant: any) => (
+            <PlantCard
+              key={plant.id}
+              name={plant.name}
+              type={plant.type}
+              lastWatered={plant.last_watered}
+              nextWater={plant.next_water}
+              id={plant.id}
+            />
+          ))}
+      </PlantCardContainer>
     </>
   );
 };

@@ -7,6 +7,7 @@ export const nextWater = (type: string, last_watered: string) => {
 };
 
 const getDay = (type: string) => {
+  console.log(type);
   let waterShedule = plants.filter(
     (plant) => plant.type.toLowerCase() === type.toLowerCase()
   );
