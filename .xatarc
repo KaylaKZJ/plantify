@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://KaylaKZJ-s-workspace-i0mnkq.eu-west-1.xata.sh/db/plant-care-app",
+  "codegen": {
+    "output": "utils/xata.ts"
+  }
+}

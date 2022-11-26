@@ -1,0 +1,39 @@
+.container {
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #fff;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        min-width: 270px;
+
+        input,
+        select {
+            padding: 10px;
+            border: 1px solid #3b3b3b;
+            border-radius: 4px;
+
+            &:focus-visible,
+            &:focus {
+                border-color: green;
+                outline-color: #33aab2;
+            }
+        }
+
+        fieldset {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-radius: 4px;
+            border: 1px solid #3b3b3b;
+            padding: 10px 20px;
+
+            span {
+                display: flex;
+                gap: 10px;
+            }
+        }
+    }
+}

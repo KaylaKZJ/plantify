@@ -1,0 +1,53 @@
+@keyframes ScaleInOut {
+    0% {
+        transform: scale(0.8);
+    }
+
+    100% {
+        transform: scale(1.5);
+    }
+}
+
+@keyframes Rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@mixin animation($delay) {
+    animation: ScaleInOut 0.6s ease-in-out $delay infinite alternate;
+}
+
+$dotSize: 15px;
+$dotMargin: 0.5rem;
+$dotColor: black;
+
+.spinnerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .dot {
+        width: $dotSize;
+        height: $dotSize;
+        background-color: $dotColor;
+        border-radius: 100%;
+        margin: $dotMargin;
+    }
+
+    .dot:nth-child(1) {
+        @include animation(0.2s);
+    }
+
+    .dot:nth-child(2) {
+        @include animation(0.4s);
+    }
+
+    .dot:nth-child(3) {
+        @include animation(0.6s);
+    }
+}
