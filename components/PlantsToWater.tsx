@@ -10,12 +10,12 @@ const PlantsToWater = (props: any) => {
         {props.plants &&
           props.plants.map((plant: any) => (
             <PlantCard
-              key={plant.id}
+              key={plant.client_id}
               name={plant.name}
               type={plant.type}
               lastWatered={plant.last_watered}
               nextWater={plant.next_water}
-              id={plant.id}
+              id={plant.client_id}
             />
           ))}
       </PlantCardContainer>

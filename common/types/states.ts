@@ -1,5 +1,8 @@
+import { Hash } from 'crypto';
+
 export type TPlantFormFields = {
   type: string;
+  client_id: string;
   name: string;
   indoor: boolean;
   outdoor: boolean;

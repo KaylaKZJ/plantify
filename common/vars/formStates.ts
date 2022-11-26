@@ -8,6 +8,7 @@ export const addPlantFormInitial = {
   last_watered: moment().toISOString(),
   next_water: moment().toISOString(),
   water_schedule: [],
+  client_id: '',
 };
 
 export const formFeedbackInitial = {

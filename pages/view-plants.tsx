@@ -1,15 +1,18 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../common/store/store';
 import { xata } from '../common/utils/xata';
 import PlantCardContainer from '../components/Layout/PlantCardContainer';
 import PlantCard from '../components/PlantCard';
 
-const ViewPlants = ({ plants }: any) => {
+const ViewPlants = () => {
+  const plants = useSelector((state: RootState) => state.plants.plants);
   return (
     <PlantCardContainer>
       {plants.map((plant: any) => (
         <PlantCard
-          id={plant.id}
-          key={plant.id}
+          id={plant.client_id}
+          key={plant.client_id}
           name={plant.name}
           type={plant.type}
           lastWatered={plant.last_watered}
@@ -21,11 +24,3 @@ const ViewPlants = ({ plants }: any) => {
 };
 
 export default ViewPlants;
-
-export const getServerSideProps = async () => {
-  let xataPlants = await xata.db.plants.getMany();
-  let plantsString = JSON.stringify(xataPlants);
-  let plants = JSON.parse(plantsString);
-
-  return { props: { plants } };
-};

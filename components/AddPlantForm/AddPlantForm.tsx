@@ -9,14 +9,18 @@ import {
 import { plantDropdownOptions } from '../../common/vars/dropdownOptions';
 import styles from './AddPlantForm.module.scss';
 import { nextWater } from '../../common/utils/watering';
+import { createID } from '../../common/utils/lib';
 import SubmitButton from '../Buttons/SubmitButton';
 import { formUIUpdate } from '../../common/utils/forms';
+import { useDispatch } from 'react-redux';
+import { addPlant } from '../../common/store/plantSlice';
 
 const AddPlantForm = () => {
   const [formFields, setFormFields] =
     useState<TPlantFormFields>(addPlantFormInitial);
   const [formFeedback, setFormFeedback] = useState(formFeedbackInitial);
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const updateFormUI = (
     feedbackText: string,
@@ -32,10 +36,21 @@ const AddPlantForm = () => {
     );
   };
 
+  const preSubmitFields = () => {
+    setFormFields({
+      ...formFields,
+      next_water: nextWater(formFields.type, formFields.last_watered),
+      client_id: createID(formFields.name, 8),
+    });
+    console.log(formFields);
+  };
+
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    formFields.next_water = nextWater(formFields.type, formFields.last_watered);
+    preSubmitFields();
+    dispatch(addPlant({ ...formFields }));
+
     plantsApi
       .addPlant({ ...formFields })
       .then((res) => {

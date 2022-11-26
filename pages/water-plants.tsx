@@ -1,10 +1,13 @@
 import moment from 'moment';
 import React, { useMemo } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../common/store/store';
 import { waterToday } from '../common/utils/dates';
-import { xata } from '../common/utils/xata';
 import PlantsToWater from '../components/PlantsToWater';
 
-const WaterPlants = ({ plants }: any) => {
+const WaterPlants = () => {
+  const plants = useSelector((state: RootState) => state.plants.plants);
+
   const thirstyPlants = useMemo(() => {
     return plants.filter((plant: any) => {
       return waterToday(plant.next_water);
@@ -19,11 +22,3 @@ const WaterPlants = ({ plants }: any) => {
 };
 
 export default WaterPlants;
-
-export const getServerSideProps = async () => {
-  let xataPlants = await xata.db.plants.getMany();
-  let plantsString = JSON.stringify(xataPlants);
-  let plants = JSON.parse(plantsString);
-
-  return { props: { plants } };
-};

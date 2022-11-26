@@ -4,9 +4,7 @@ import styles from '../styles/Home.module.css';
 import { xata } from '../common/utils/xata';
 import AddPlantForm from '../components/AddPlantForm/AddPlantForm';
 
-type Props = Awaited<ReturnType<typeof getServerSideProps>>['props'];
-
-const Home: FC<Props> = ({ plants }) => {
+const Home = () => {
   return (
     <div className={styles.container}>
       <Head>
@@ -31,11 +29,4 @@ const Home: FC<Props> = ({ plants }) => {
   );
 };
 
-export const getServerSideProps = async () => {
-  let xataPlants = await xata.db.plants.getMany();
-  let plantsString = JSON.stringify(xataPlants);
-  let plants = JSON.parse(plantsString);
-
-  return { props: { plants } };
-};
 export default Home;

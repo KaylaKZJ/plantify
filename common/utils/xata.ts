@@ -11,6 +11,7 @@ const tables = [
     name: 'plants',
     columns: [
       { name: 'type', type: 'string', notNull: true, defaultValue: 'unknown' },
+      { name: 'client_id', type: 'string', unique: true },
       { name: 'name', type: 'string', unique: true },
       { name: 'indoor', type: 'bool', notNull: true, defaultValue: 'true' },
       { name: 'last_watered', type: 'datetime' },
