@@ -4,7 +4,7 @@ import React from 'react';
 import { TPlantCard } from '../common/types/plantCard';
 import { formatDateForUser, waterToday } from '../common/utils/dates';
 import plantImage from '../public/plant.jpg';
-import WaterPlantButton from './WaterPlantButton/WaterPlantButton';
+import WaterPlantButton from './Buttons/WaterPlantButton';
 const PlantCard = ({ name, type, lastWatered, nextWater, id }: TPlantCard) => {
   return (
     <div className='border-solid border-2 border-sky-700 rounded-md p-8 pt-4 bg-white'>
@@ -24,7 +24,7 @@ const PlantCard = ({ name, type, lastWatered, nextWater, id }: TPlantCard) => {
         <br />
         {waterToday(nextWater) ? 'Today' : formatDateForUser(nextWater)}
       </p>
-      {waterToday(nextWater) && <WaterPlantButton id={id} />}
+      {waterToday(nextWater) && <WaterPlantButton id={id} type={type} />}
     </div>
   );
 };

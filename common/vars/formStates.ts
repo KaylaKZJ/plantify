@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 export const addPlantFormInitial = {
-  type: '',
+  type: 'Unknown',
   name: '',
   indoor: true,
   outdoor: false,

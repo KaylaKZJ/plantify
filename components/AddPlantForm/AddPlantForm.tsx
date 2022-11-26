@@ -5,7 +5,8 @@ import { TPlantFormFields } from '../../common/types/states';
 import { addPlantFormInitial } from '../../common/vars/formStates';
 import { plantDropdownOptions } from '../../common/vars/dropdownOptions';
 import styles from './AddPlantForm.module.scss';
-import { nextWater } from '../../common/utils/wateringShedule';
+import { nextWater } from '../../common/utils/watering';
+import SubmitButton from '../Buttons/SubmitButton';
 
 const AddPlantForm = () => {
   const [formFields, setFormFields] =
@@ -14,6 +15,7 @@ const AddPlantForm = () => {
     text: '',
     state: 'error',
   });
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setFormFields({ ...formFields, next_water: moment().toISOString() });
@@ -21,17 +23,20 @@ const AddPlantForm = () => {
 
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
     formFields.next_water = nextWater(formFields.type, formFields.last_watered);
     plantsApi
       .addPlant({ ...formFields })
       .then((res) => {
         if (res?.status == 200) {
+          setLoading(false);
           setFormFeedback({
             text: `${formFields.name} was added succesfully!`,
             state: 'success',
           });
         } else {
           console.error(res);
+          setLoading(false);
           setFormFeedback({
             text: 'Something went wrong, please try again later',
             state: 'error',
@@ -40,6 +45,11 @@ const AddPlantForm = () => {
       })
       .catch((e) => {
         console.error(e);
+        setLoading(false);
+        setFormFeedback({
+          text: 'Something went wrong, please try again later',
+          state: 'error',
+        });
       });
   };
 
@@ -114,7 +124,7 @@ const AddPlantForm = () => {
           }}
           required
         />
-        <button type='submit'>Add Plant</button>
+        <SubmitButton loading={loading} buttonText='Add Plant' />
       </form>
       <p
         className={

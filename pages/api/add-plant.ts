@@ -1,5 +1,5 @@
 import { NextApiHandler } from 'next';
-import { xata } from '../common/utils/xata';
+import { xata } from '../../common/utils/xata';
 
 const handler: NextApiHandler = async (req, res) => {
   const { type, name, indoor, last_watered, next_water, water_schedule } =
