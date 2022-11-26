@@ -3,15 +3,16 @@ import React, { useState } from 'react';
 import plantsApi from '../../common/services/plant-service';
 import Spinner from '../Spinner/Spinner';
 
-const WaterPlant = ({ plant }: { plant: any }) => {
+const WaterPlantButton = ({ id }: { id: string }) => {
   const [buttonText, setButtonText] = useState('Water Plant');
   const [loading, setLoading] = useState(false);
   return (
     <button
+      className='m-auto block'
       type='submit'
       onClick={() => {
         setLoading(true);
-        plantsApi.updatePlant(plant.id, moment().toISOString()).then((res) => {
+        plantsApi.updatePlant(id, moment().toISOString()).then((res) => {
           setLoading(false);
           if (res?.status === 200) {
             setButtonText('Plant Watered');
@@ -25,4 +26,4 @@ const WaterPlant = ({ plant }: { plant: any }) => {
   );
 };
 
-export default WaterPlant;
+export default WaterPlantButton;
