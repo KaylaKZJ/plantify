@@ -20,8 +20,6 @@ export const plantSlice = createSlice({
       state.plants.push(action.payload);
     },
     removePlant: (state, action: PayloadAction<any>) => {
-      console.log(action.payload);
-
       state.plants = state.plants.filter((plant) => {
         return plant.client_id !== action.payload;
       });

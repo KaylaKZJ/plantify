@@ -22,6 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
       saveState(reduxState(), 'redux');
     }, 800)
   );
+  console.log(navigator.onLine);
 
   return (
     <Layout>

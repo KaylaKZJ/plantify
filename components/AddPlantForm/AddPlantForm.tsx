@@ -42,7 +42,6 @@ const AddPlantForm = () => {
       next_water: nextWater(formFields.type, formFields.last_watered),
       client_id: createID(formFields.name, 8),
     });
-    console.log(formFields);
   };
 
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -77,7 +76,6 @@ const AddPlantForm = () => {
             placeholder='Type Of Plant'
             value={formFields.type}
             onChange={(e) => {
-              console.log(e);
               setFormFields({ ...formFields, type: e.target.value });
             }}
             required

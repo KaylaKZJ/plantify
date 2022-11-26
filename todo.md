@@ -1,11 +1,5 @@
 plant care app
 
-add a plant
-watering schedule
-daily
-once a week
-custom
-
-remove a plant
+sync redux store to db
 receive notification
 plant thirst progress
