@@ -1,8 +1,9 @@
 import React from 'react';
+import { TLayout } from '../../common/types/layoutTypes';
 import TopNav from '../TopNav/TopNav';
 import style from './Layout.module.scss';
 
-const Layout = ({ children }: any) => {
+const Layout = ({ children }: TLayout) => {
   return (
     <main className={style.layout}>
       <TopNav />

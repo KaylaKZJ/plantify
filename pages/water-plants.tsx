@@ -13,9 +13,9 @@ const WaterPlants = ({ plants }: any) => {
   }, [plants]);
 
   return (
-    <div>
+    <>
       <PlantsToWater plants={waterToday} />
-    </div>
+    </>
   );
 };
 

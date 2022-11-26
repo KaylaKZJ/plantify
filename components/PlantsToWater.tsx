@@ -1,7 +1,6 @@
-import moment from 'moment';
 import React from 'react';
-import plantsApi from '../common/services/plant-service';
-import WaterPlant from './WaterPlant/WaterPlant';
+import PlantCardContainer from './Layout/PlantCardContainer';
+import PlantCard from './PlantCard';
 
 const PlantsToWater = (props: any) => {
   return (
@@ -9,10 +8,17 @@ const PlantsToWater = (props: any) => {
       <h1>Plants to water</h1>
       {props.plants &&
         props.plants.map((plant: any) => (
-          <>
-            <h2 key={plant.name}>{plant.name}</h2>
-            <WaterPlant plant={plant} />
-          </>
+          <PlantCardContainer key={plant.id}>
+            <div>
+              <PlantCard
+                name={plant.name}
+                type={plant.type}
+                lastWatered={plant.last_watered}
+                nextWater={plant.next_water}
+                id={plant.id}
+              />
+            </div>
+          </PlantCardContainer>
         ))}
     </>
   );

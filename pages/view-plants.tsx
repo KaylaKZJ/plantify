@@ -1,13 +1,22 @@
 import React from 'react';
 import { xata } from '../common/utils/xata';
+import PlantCardContainer from '../components/Layout/PlantCardContainer';
+import PlantCard from '../components/PlantCard';
 
 const ViewPlants = ({ plants }: any) => {
   return (
-    <div>
+    <PlantCardContainer>
       {plants.map((plant: any) => (
-        <h1 key={plant.id}>{plant.name}</h1>
+        <PlantCard
+          id={plant.id}
+          key={plant.id}
+          name={plant.name}
+          type={plant.type}
+          lastWatered={plant.last_watered}
+          nextWater={plant.next_water}
+        />
       ))}
-    </div>
+    </PlantCardContainer>
   );
 };
 

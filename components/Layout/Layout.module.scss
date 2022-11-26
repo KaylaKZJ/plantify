@@ -1,11 +1,14 @@
 .layout {
     display: grid;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     font-size: 1.6rem;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: 60px 1fr auto;
+    max-width: 100%;
 
     section {
-        margin: 0 auto;
+        margin: 0 auto 40px;
+        max-width: 90%;
+        width: 100%;
     }
 }
